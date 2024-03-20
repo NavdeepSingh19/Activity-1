@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navdeep Singh-2110992590</title>
+</head>
+<body>
+    <h5 style="background-color: gold; font-size: 28px;">CALCULATOR: </h5><br>
+    <h4>Name:NAVDEEP SINGH</h4>
+    <h4>Roll number:2110992590</h4>
+        <script>
+        // Create calculator elements and functionality using only JavaScript
+        
+// Create a div for the calculator
+const calculatorDiv = document.createElement('div');
+calculatorDiv.style.textAlign = 'center';
+document.body.appendChild(calculatorDiv);
+
+// Create an input for the display
+const displayInput = document.createElement('input');
+displayInput.type = 'text';
+displayInput.id = 'display';
+displayInput.readOnly = true;
+displayInput.style.width = '200px';
+displayInput.style.height = '40px';
+displayInput.style.marginBottom = '10px';
+calculatorDiv.appendChild(displayInput);
+
+
+// Create a div for the calculator buttons
+const buttonsDiv = document.createElement('div');
+buttonsDiv.style.display = 'grid';
+buttonsDiv.style.gridTemplateColumns = 'repeat(4, 1fr)';
+buttonsDiv.style.gap = '5px';
+calculatorDiv.appendChild(buttonsDiv);
+
+// Define button labels
+const buttonLabels = ['C', '/', '*', '+', '7', '8', '9', '-', '4', '5', '6', '%', '1', '2', '3', '.', '0','='];
+
+// Create buttons dynamically
+buttonLabels.forEach(label => {
+  const button = document.createElement('button');
+  button.textContent = label;
+  button.style.width = '50px';
+  button.style.height = '50px';
+  button.style.fontSize = '18px';
+  button.addEventListener('click', () => buttonClick(label));
+  buttonsDiv.appendChild(button);
+});
+
+// Adding event listener for user input
+document.addEventListener('keydown', handleKeyPress);
+
+// Define display and calculation functions
+let display = document.getElementById('display');
+
+function buttonClick(value) {
+  if (value === '=') {
+    calculateResult();
+  } else if (value === 'C') {
+    clearDisplay();
+  } else {
+    display.value += value;
+  }
+}
+
+function handleKeyPress(event) {
+  const keyPressed = event.key;
+
+  // Check if the pressed key is a number or an operator
+  if (/[0-9\/\*\-\+\.=]/.test(keyPressed)) {
+    buttonClick(keyPressed);
+  }
+}
+
+function clearDisplay() {
+  display.value = '';
+}
+
+function calculateResult() {
+  try {
+    display.value = eval(display.value);
+  } catch (error) {
+    display.value = 'Error';
+  }
+}
+
+    </script>
+</body>
+</html>
